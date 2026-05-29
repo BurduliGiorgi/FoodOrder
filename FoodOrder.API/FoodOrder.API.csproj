@@ -8,7 +8,21 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Scalar.AspNetCore" Version="2.14.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FoodOrder.Application\FoodOrder.Application.csproj" />
+    <ProjectReference Include="..\FoodOrder.Domain\FoodOrder.Domain.csproj" />
+    <ProjectReference Include="..\FoodOrder.Infrastructure\FoodOrder.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
