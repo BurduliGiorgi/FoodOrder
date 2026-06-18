@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using FoodOrder.Infrastructure.Mappings;
 namespace FoodOrder.Infrastructure
 {
     public static class DependencyInjection
@@ -29,6 +29,8 @@ namespace FoodOrder.Infrastructure
                 ?? throw new InvalidOperationException("JwtSettings is not configured.");
 
             builder.Services.AddJwtAuthentication(jwtSettings);
+            builder.Services.AddAuthorization();
+            builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(UserProfile).Assembly));
 
             return builder;
         }
@@ -58,6 +60,9 @@ namespace FoodOrder.Infrastructure
                         RoleClaimType = "role"
                     };
                 });
+
         }
+
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using FoodOrder.Application.Interfaces;
+﻿using FoodOrder.Application.DTOs;
+using FoodOrder.Application.Interfaces;
 using FoodOrder.Infrastructure.Configuration;
 using FoodOrder.Infrastructure.Identity;
 using Microsoft.Extensions.Options;
@@ -46,6 +47,11 @@ namespace FoodOrder.Infrastructure.Services
             var token = handler.CreateToken(descriptor);
 
             return (token.ToString(), expiredAt);
+        }
+
+        public (string Token, DateTime ExpiresAt) CreateToken(AppUserDTO user, IEnumerable<string> roles)
+        {
+            throw new NotImplementedException();
         }
     }
 }
