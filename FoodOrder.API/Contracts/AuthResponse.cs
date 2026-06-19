@@ -1,4 +1,4 @@
-﻿namespace FoodOrder.API.Endpoints.Auth
+﻿namespace FoodOrder.API.Contracts
 {
     public record AuthResponse(
         Guid Id,

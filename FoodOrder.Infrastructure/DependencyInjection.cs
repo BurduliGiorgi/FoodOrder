@@ -1,6 +1,9 @@
-﻿using FoodOrder.Infrastructure.Configuration;
+﻿using FoodOrder.Application.Interfaces;
+using FoodOrder.Infrastructure.Configuration;
 using FoodOrder.Infrastructure.Data;
 using FoodOrder.Infrastructure.Identity;
+using FoodOrder.Infrastructure.Mappings;
+using FoodOrder.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +13,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using FoodOrder.Infrastructure.Mappings;
 namespace FoodOrder.Infrastructure
 {
     public static class DependencyInjection
@@ -31,6 +33,7 @@ namespace FoodOrder.Infrastructure
             builder.Services.AddJwtAuthentication(jwtSettings);
             builder.Services.AddAuthorization();
             builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(UserProfile).Assembly));
+            builder.Services.AddScoped<ITokenService, TokenService>();
 
             return builder;
         }

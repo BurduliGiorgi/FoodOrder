@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using FoodOrder.API.Contracts;
 using FoodOrder.Application.DTOs;
 using FoodOrder.Application.Interfaces;
 using FoodOrder.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.Data;
+
 
 namespace FoodOrder.API.Endpoints.Auth
 {
