@@ -26,7 +26,7 @@ namespace FoodOrder.API.Endpoints.Auth
                 return Results.Unauthorized();
 
             var roles = await userManager.GetRolesAsync(user);
-            var userDto = mapper.Map<AppUserDTO>(user) with { Roles = roles };
+            var userDto = mapper.Map<TokenRequest>(user);
             var (token, expiresAt) = tokenService.CreateToken(userDto, roles);
             return Results.Ok(new AuthResponse(user.Id, user.Email!, roles, token, expiresAt));
         }

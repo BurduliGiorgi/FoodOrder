@@ -31,6 +31,7 @@ namespace FoodOrder.Infrastructure
                 ?? throw new InvalidOperationException("JwtSettings is not configured.");
 
             builder.Services.AddJwtAuthentication(jwtSettings);
+            builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
             builder.Services.AddAuthorization();
             builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(UserProfile).Assembly));
             builder.Services.AddScoped<ITokenService, TokenService>();

@@ -1,5 +1,6 @@
 using FoodOrder.API.Endpoints;
 using FoodOrder.Infrastructure;
+using FoodOrder.Infrastructure.Seeders;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,5 +23,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.MapEndpoints();
+await DbSeeder.SeedAsync(app.Services);
 
 app.Run();

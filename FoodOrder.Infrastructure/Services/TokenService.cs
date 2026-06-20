@@ -3,12 +3,9 @@ using FoodOrder.Application.Interfaces;
 using FoodOrder.Infrastructure.Configuration;
 using FoodOrder.Infrastructure.Identity;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace FoodOrder.Infrastructure.Services
@@ -17,17 +14,17 @@ namespace FoodOrder.Infrastructure.Services
     {
         private readonly JwtSettings _settings = jwtSettings.Value;
 
-        public (string Token,DateTime ExpiresAt) CreateToken(AppUser user, IEnumerable<string> roles)
+        public (string Token, DateTime ExpiresAt) CreateToken(TokenRequest user, IEnumerable<string> roles)
         {
-            var expiredAt = DateTime.UtcNow.AddMinutes(_settings.ExpiryMinutes);
+            var expiresAt = DateTime.UtcNow.AddMinutes(_settings.ExpiryMinutes);
 
             var claims = new List<Claim>
-            {
-                new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                new(JwtRegisteredClaimNames.Email, user.Email),
-                new(JwtRegisteredClaimNames.Name, $"{user.FirstName} {user.LastName}"),
-                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+    {
+        new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+        new(JwtRegisteredClaimNames.Email, user.Email!),
+        new(JwtRegisteredClaimNames.Name, $"{user.FirstName} {user.LastName}"),
+        new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    };
 
             claims.AddRange(roles.Select(role => new Claim("role", role)));
 
@@ -37,21 +34,16 @@ namespace FoodOrder.Infrastructure.Services
             var descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = expiredAt,
+                Expires = expiresAt,
                 Issuer = _settings.Issuer,
                 Audience = _settings.Audience,
                 SigningCredentials = credentials
             };
 
-            var handler = new JwtSecurityTokenHandler();
+            var handler = new JsonWebTokenHandler();
             var token = handler.CreateToken(descriptor);
 
-            return (token.ToString(), expiredAt);
-        }
-
-        public (string Token, DateTime ExpiresAt) CreateToken(AppUserDTO user, IEnumerable<string> roles)
-        {
-            throw new NotImplementedException();
+            return (token, expiresAt);
         }
     }
 }

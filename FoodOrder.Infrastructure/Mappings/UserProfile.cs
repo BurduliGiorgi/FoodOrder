@@ -8,8 +8,7 @@ namespace FoodOrder.Infrastructure.Mappings
     {
         public UserProfile()
         {
-            CreateMap<AppUser, AppUserDTO>()
-                .ForCtorParam("Roles", opt => opt.MapFrom(_ => new List<string>()));
+            CreateMap<AppUser, TokenRequest>();
         }
     }
 }
