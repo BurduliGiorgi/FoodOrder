@@ -25,6 +25,7 @@ namespace FoodOrder.API.Endpoints.Auth
                 LastName = request.LastName,
                 UserName = request.Email,
                 Email = request.Email
+                
             };
 
             var result = await userManager.CreateAsync(user, request.Password);
