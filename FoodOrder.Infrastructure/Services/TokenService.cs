@@ -1,11 +1,13 @@
 ﻿using FoodOrder.Application.DTOs;
 using FoodOrder.Application.Interfaces;
 using FoodOrder.Infrastructure.Configuration;
+using FoodOrder.Infrastructure.Data;
 using FoodOrder.Infrastructure.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace FoodOrder.Infrastructure.Services
@@ -44,6 +46,22 @@ namespace FoodOrder.Infrastructure.Services
             var token = handler.CreateToken(descriptor);
 
             return (token, expiresAt);
+        }
+
+        public string CreateRefreshToken()
+        {
+            var randomBytes = RandomNumberGenerator.GetBytes(64);
+            return Convert.ToBase64String(randomBytes);
+        }
+
+        public async Task RevokeAllActiveTokensAsync(AppDbContext db, Guid userId)
+        {
+            var activeTokens = db.RefreshTokens.Where(t => t.UserId == userId && t.IsActive).ToList();
+            foreach (var token in activeTokens)
+            {
+                token.Revoked = DateTime.UtcNow;
+            }
+            await db.SaveChangesAsync();
         }
     }
 }

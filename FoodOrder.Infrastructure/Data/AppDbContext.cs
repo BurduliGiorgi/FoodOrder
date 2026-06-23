@@ -1,4 +1,5 @@
-﻿using FoodOrder.Domain.Models;
+﻿using FoodOrder.Domain.Entities;
+using FoodOrder.Domain.Models;
 using FoodOrder.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace FoodOrder.Infrastructure.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
             protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

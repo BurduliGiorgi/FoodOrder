@@ -5,5 +5,7 @@
         string Email,
         IEnumerable<string> Roles,
         string Token,
-        DateTime ExpiresAt);
+        DateTime ExpiresAt,
+        string RefreshToken,
+        DateTime RefreshTokenExpiresAt);
 }
