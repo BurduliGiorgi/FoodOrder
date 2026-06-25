@@ -35,6 +35,7 @@ namespace FoodOrder.Infrastructure
             builder.Services.AddAuthorization();
             builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(UserProfile).Assembly));
             builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             return builder;
         }
