@@ -1,6 +1,6 @@
 ﻿using Azure.Core;
 using FoodOrder.Application.Common;
-using FoodOrder.Application.Interfaces;
+using FoodOrder.Application.Common.Interfaces;
 using FoodOrder.Domain.Constants;
 using FoodOrder.Infrastructure.Identity;
 using Microsoft.AspNetCore.Http;

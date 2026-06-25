@@ -16,8 +16,10 @@ namespace FoodOrder.Application.Features.Auth.Commands.Register
             RuleFor(x => x.LastName).NotEmpty().WithMessage("Last name is required.")
                 .MaximumLength(50).WithMessage("Last name cannot exceed 50 characters.");
             //Email
-            RuleFor(x => x.Email).NotEmpty().WithMessage("Email is required.")
-                .Matches(@"^[^@\s]+@[^@\s]+\.[^@\s]+$").WithMessage("Invalid email format.");
+            RuleFor(x => x.Email)
+                .NotEmpty().WithMessage("Email is required.")
+                .Matches(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                .WithMessage("Invalid email format.");
 
             //Password
             RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required.")

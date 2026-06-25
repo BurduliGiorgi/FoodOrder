@@ -1,8 +1,8 @@
 using FoodOrder.API.Endpoints;
+using FoodOrder.Application;
 using FoodOrder.Infrastructure;
 using FoodOrder.Infrastructure.Seeders;
 using Scalar.AspNetCore;
-using FoodOrder.Application;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddInfrastructureServices();
@@ -12,7 +12,6 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
-
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

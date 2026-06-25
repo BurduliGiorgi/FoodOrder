@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using FoodOrder.Application.Common;
-using FoodOrder.Application.Interfaces;
+using FoodOrder.Application.Common.Interfaces;
 
 namespace FoodOrder.Application.Features.Auth.Commands.Register
 {

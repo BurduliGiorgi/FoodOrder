@@ -1,4 +1,4 @@
-﻿using FoodOrder.Application.Interfaces;
+﻿using FoodOrder.Application.Common.Interfaces;
 using FoodOrder.Infrastructure.Configuration;
 using FoodOrder.Infrastructure.Data;
 using FoodOrder.Infrastructure.Identity;

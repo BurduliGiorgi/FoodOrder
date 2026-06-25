@@ -1,5 +1,5 @@
-﻿using FoodOrder.Application.DTOs;
-using FoodOrder.Application.Interfaces;
+﻿using FoodOrder.Application.Common.Interfaces;
+using FoodOrder.Application.DTOs;
 using FoodOrder.Infrastructure.Configuration;
 using FoodOrder.Infrastructure.Data;
 using FoodOrder.Infrastructure.Identity;

@@ -1,6 +1,5 @@
 ﻿using FoodOrder.API.Contracts;
 using FoodOrder.Application.DTOs;
-using FoodOrder.Application.Interfaces;
 using FoodOrder.Infrastructure.Configuration;
 using FoodOrder.Infrastructure.Data;
 using FoodOrder.Infrastructure.Identity;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using FoodOrder.Domain.Entities;
+using FoodOrder.Application.Common.Interfaces;
 
 namespace FoodOrder.API.Endpoints.Auth;
 

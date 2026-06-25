@@ -1,6 +1,6 @@
 ﻿using FoodOrder.Application.DTOs;
 
-namespace FoodOrder.Application.Interfaces
+namespace FoodOrder.Application.Common.Interfaces
 {
     public interface ITokenService
     {
