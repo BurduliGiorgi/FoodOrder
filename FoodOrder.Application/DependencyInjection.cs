@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FoodOrder.Application.Common.Behaviours;
+using FoodOrder.Application.Features.Auth.Commands.Login;
 using FoodOrder.Application.Features.Auth.Commands.Register;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,7 @@ namespace FoodOrder.Application
         public static IHostApplicationBuilder AddApplicationServices(this IHostApplicationBuilder builder)
         {
             builder.Services.AddMediatR(typeof(RegisterCommand).Assembly);
+            builder.Services.AddMediatR(typeof(LoginCommand).Assembly);
             builder.Services.AddValidatorsFromAssemblyContaining<RegisterCommand>();
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             return builder;

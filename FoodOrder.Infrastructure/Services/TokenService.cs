@@ -1,8 +1,5 @@
 ﻿using FoodOrder.Application.Common.Interfaces;
-using FoodOrder.Application.DTOs;
 using FoodOrder.Infrastructure.Configuration;
-using FoodOrder.Infrastructure.Data;
-using FoodOrder.Infrastructure.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -16,17 +13,17 @@ namespace FoodOrder.Infrastructure.Services
     {
         private readonly JwtSettings _settings = jwtSettings.Value;
 
-        public (string Token, DateTime ExpiresAt) CreateToken(TokenRequest user, IEnumerable<string> roles)
+        public (string Token, DateTime ExpiresAt) CreateToken(Guid userId, string email, IList<string> roles)
         {
             var expiresAt = DateTime.UtcNow.AddMinutes(_settings.ExpiryMinutes);
 
             var claims = new List<Claim>
-    {
-        new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-        new(JwtRegisteredClaimNames.Email, user.Email!),
-        new(JwtRegisteredClaimNames.Name, $"{user.FirstName} {user.LastName}"),
-        new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-    };
+            {
+                new(JwtRegisteredClaimNames.Sub, userId.ToString()),
+                new(JwtRegisteredClaimNames.Email, email),
+                new(JwtRegisteredClaimNames.Name, email),
+                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
 
             claims.AddRange(roles.Select(role => new Claim("role", role)));
 
@@ -52,16 +49,6 @@ namespace FoodOrder.Infrastructure.Services
         {
             var randomBytes = RandomNumberGenerator.GetBytes(64);
             return Convert.ToBase64String(randomBytes);
-        }
-
-        public async Task RevokeAllActiveTokensAsync(AppDbContext db, Guid userId)
-        {
-            var activeTokens = db.RefreshTokens.Where(t => t.UserId == userId && t.IsActive).ToList();
-            foreach (var token in activeTokens)
-            {
-                token.Revoked = DateTime.UtcNow;
-            }
-            await db.SaveChangesAsync();
         }
     }
 }
