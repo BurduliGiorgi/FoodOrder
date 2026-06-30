@@ -1,5 +1,15 @@
-﻿using FoodOrder.Application.Common.Interfaces;
+﻿using Azure.Core;
+using FoodOrder.Application.Common;
+using FoodOrder.Application.Common.Interfaces;
+using FoodOrder.Application.DTOs;
+using FoodOrder.Application.Features.Auth.Commands.RefreshToken;
+using FoodOrder.Domain.Entities;
 using FoodOrder.Infrastructure.Configuration;
+using FoodOrder.Infrastructure.Data;
+using FoodOrder.Infrastructure.Identity;
+using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -9,9 +19,14 @@ using System.Text;
 
 namespace FoodOrder.Infrastructure.Services
 {
-    public class TokenService(IOptions<JwtSettings> jwtSettings) : ITokenService
+    public class TokenService : ITokenService
     {
-        private readonly JwtSettings _settings = jwtSettings.Value;
+        private readonly JwtSettings _settings;
+
+        public TokenService(IOptions<JwtSettings> jwtSettings)
+        {
+            _settings = jwtSettings.Value;
+        }
 
         public (string Token, DateTime ExpiresAt) CreateToken(Guid userId, string email, IList<string> roles)
         {
@@ -50,5 +65,7 @@ namespace FoodOrder.Infrastructure.Services
             var randomBytes = RandomNumberGenerator.GetBytes(64);
             return Convert.ToBase64String(randomBytes);
         }
+
+        
     }
 }
