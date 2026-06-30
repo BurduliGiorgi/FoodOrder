@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FoodOrder.Domain.Enums
+﻿namespace FoodOrder.Domain.Enums
 {
     public enum OrderStatus
     {

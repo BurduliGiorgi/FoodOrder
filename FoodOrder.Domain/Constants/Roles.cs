@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FoodOrder.Domain.Constants
+﻿namespace FoodOrder.Domain.Constants
 {
     public static class Roles
     {

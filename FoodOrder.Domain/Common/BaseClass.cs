@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FoodOrder.Domain.Common
+﻿namespace FoodOrder.Domain.Common
 {
     public abstract class BaseClass
     {

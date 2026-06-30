@@ -1,9 +1,5 @@
 ﻿using FoodOrder.Domain.Common;
 using FoodOrder.Domain.Enums;
-using FoodOrder.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FoodOrder.Domain.Models
 {

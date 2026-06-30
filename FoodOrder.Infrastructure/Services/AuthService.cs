@@ -111,16 +111,20 @@ namespace FoodOrder.Infrastructure.Services
 
             var roles = await _userManager.GetRolesAsync(user);
 
-            token.Revoked = DateTime.UtcNow;
 
             var accessToken = _tokenService.CreateToken(user.Id, user.Email!, roles);
             var newRefreshToken = _tokenService.CreateRefreshToken();
+
+
+
+            token.Revoked = DateTime.UtcNow;
+            token.ReplacedByToken = newRefreshToken;
 
             var refreshTokenEntity = new RefreshToken
             {
                 UserId = user.Id,
                 Token = newRefreshToken,
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddDays(_jwtSettings.Value.RefreshTokenExpiryDays),
                 Created = DateTime.UtcNow
             };
 

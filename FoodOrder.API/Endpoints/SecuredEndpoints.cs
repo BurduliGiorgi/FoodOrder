@@ -1,7 +1,4 @@
 ﻿using FoodOrder.Domain.Constants;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using System.Security.Claims;
 
 namespace FoodOrder.API.Endpoints

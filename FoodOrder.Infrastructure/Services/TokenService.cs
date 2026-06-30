@@ -1,15 +1,5 @@
-﻿using Azure.Core;
-using FoodOrder.Application.Common;
-using FoodOrder.Application.Common.Interfaces;
-using FoodOrder.Application.DTOs;
-using FoodOrder.Application.Features.Auth.Commands.RefreshToken;
-using FoodOrder.Domain.Entities;
+﻿using FoodOrder.Application.Common.Interfaces;
 using FoodOrder.Infrastructure.Configuration;
-using FoodOrder.Infrastructure.Data;
-using FoodOrder.Infrastructure.Identity;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;

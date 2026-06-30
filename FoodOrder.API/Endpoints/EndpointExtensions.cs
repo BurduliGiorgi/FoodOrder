@@ -1,5 +1,4 @@
 ﻿// FoodOrder.API/Endpoints/EndpointExtensions.cs
-using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace FoodOrder.API.Endpoints

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FoodOrder.Application.DTOs
+﻿namespace FoodOrder.Application.DTOs
 {
     public class TokenRequest
     {
