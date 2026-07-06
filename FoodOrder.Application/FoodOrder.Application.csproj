@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FoodOrder.Domain\FoodOrder.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

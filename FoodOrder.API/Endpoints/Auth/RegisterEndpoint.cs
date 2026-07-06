@@ -12,7 +12,7 @@ namespace FoodOrder.API.Endpoints.Auth
                 var result = await mediator.Send(command);
                 return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(result.Error);
             });
-        }
+        } 
 
         
     }
