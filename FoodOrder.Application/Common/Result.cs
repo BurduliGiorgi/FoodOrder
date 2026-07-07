@@ -1,4 +1,6 @@
-﻿namespace FoodOrder.Application.Common
+﻿using FoodOrder.Domain.Models;
+
+namespace FoodOrder.Application.Common
 {
     public class Result<T>
     {
@@ -13,5 +15,10 @@
 
         public static Result<T> Success(T value) => new (value);
         public static Result<T> Failure(string error) => new (error);
+
+        public static async Task<Result<IEnumerable<MenuItem>>> Success(Task<IEnumerable<MenuItem>> itemlist)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

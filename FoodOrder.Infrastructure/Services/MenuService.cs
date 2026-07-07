@@ -12,9 +12,9 @@ namespace FoodOrder.Infrastructure.Services
     public class MenuService : IMenuService
     {
         private readonly IRepository<MenuItem> _repository;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MenuService(IRepository<MenuItem> repository,UnitOfWork unitOfWork)
+        public MenuService(IRepository<MenuItem> repository,IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
@@ -34,26 +34,34 @@ namespace FoodOrder.Infrastructure.Services
             return Result<string>.Success("Menu item added successfully.");
         }
 
-        public async void<Result<string>> DeleteMenuItemAsync(Guid id)
+        public async Task<Result<string>> DeleteMenuItemAsync(Guid id)
         {
-            var menuItem = await _repository.GetByIdA(id);
+            var menuItem = await _repository.GetById(id);
             _repository.Delete(menuItem);
+            await _unitOfWork.SaveChangesAsync();
+            return Result<string>.Success("Menu item deleted successfully.");
 
         }
 
         public Task<Result<IEnumerable<MenuItem>>> GetAllMenuItemsAsync()
         {
-            throw new NotImplementedException();
+            return Result<IEnumerable<MenuItem>>.Success(_repository.GetAllAsync());
         }
 
-        public Task<Result<IEnumerable<MenuItem>>> GetMenuItemsByCategoryAsync(MenuCategory category)
+        public async Task<Result<IEnumerable<MenuItem>>> GetMenuItemsByCategoryAsync(MenuCategory category)
         {
-            throw new NotImplementedException();
+            var menuItems = await _repository.GetAllAsync();
+            var filteredItems = menuItems.Where(item => item.Category == category);
+            return Result<IEnumerable<MenuItem>>.Success(filteredItems);
+
         }
 
-        public Task<Result<string>> UpdateMenuItemAsync(Guid id, string name, decimal price, MenuCategory category)
+        public async Task<Result<string>> UpdateMenuItemAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var menuItem = await _repository.GetById(id);
+            _repository.Update(menuItem);
+            await _unitOfWork.SaveChangesAsync();
+            return Result<string>.Success("Menu item updated successfully.");
         }
     }
 }

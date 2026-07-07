@@ -1,4 +1,5 @@
 ﻿using FoodOrder.Application.Common.Interfaces;
+using FoodOrder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ namespace FoodOrder.Infrastructure.Services
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext _context;
+        private readonly AppDbContext _context;
         private readonly DbSet<T> _dbSet;
-        public Repository(DbContext context)
+        public Repository(AppDbContext context)
         {
             _context = context;
             _dbSet = context.Set<T>();

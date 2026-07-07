@@ -12,7 +12,7 @@ namespace FoodOrder.Application.Common.Interfaces
 
         Task<Result<IEnumerable<MenuItem>>> GetMenuItemsByCategoryAsync(MenuCategory category);
 
-        Task<Result<string>> UpdateMenuItemAsync(Guid id, string name, decimal price, MenuCategory category);
+        Task<Result<string>> UpdateMenuItemAsync(Guid id);
 
         Task<Result<string>> DeleteMenuItemAsync(Guid id);
     }
