@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FoodOrder.Application.Features.Menu.Commands
+namespace FoodOrder.Application.Features.Menu.Commands.CreateMenuItem
 {
-    public class MenuCommandValidator : AbstractValidator<MenuCommand>
+    public class CreateMenuCommandValidator : AbstractValidator<CreateMenuItemCommand>
     {
-        public MenuCommandValidator()
+        public CreateMenuCommandValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required.")
                 .MaximumLength(100).WithMessage("Name must not exceed 100 characters.");

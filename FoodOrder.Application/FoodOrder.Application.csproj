@@ -17,4 +17,8 @@
     <ProjectReference Include="..\FoodOrder.Domain\FoodOrder.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Features\Menu\Commands\GetAllMenuItems\GetAllMenuItemsCommandHandler.cs" />
+  </ItemGroup>
+
 </Project>
