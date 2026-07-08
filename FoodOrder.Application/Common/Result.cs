@@ -15,10 +15,5 @@ namespace FoodOrder.Application.Common
 
         public static Result<T> Success(T value) => new (value);
         public static Result<T> Failure(string error) => new (error);
-
-        public static async Task<Result<IEnumerable<MenuItem>>> Success(Task<IEnumerable<MenuItem>> itemlist)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

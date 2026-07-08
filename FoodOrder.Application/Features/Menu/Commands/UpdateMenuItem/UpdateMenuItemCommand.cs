@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FoodOrder.Application.Features.Menu.Commands.UpdateMenuItem
+﻿namespace FoodOrder.Application.Features.Menu.Commands.UpdateMenuItem
 {
-    internal class UpdateMenuItemCommand
-    {
-    }
+    public record UpdateMenuItemCommand(Guid Id);
 }

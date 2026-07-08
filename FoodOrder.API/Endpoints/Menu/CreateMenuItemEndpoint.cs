@@ -9,7 +9,7 @@ namespace FoodOrder.API.Endpoints.Menu
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
             
-            app.MapPost("/Menu/CreateMenuItem", async (CreateMenuItemCommand command, IMediator mediator) =>
+            app.MapPost("/menu/create-menu-item", async (CreateMenuItemCommand command, IMediator mediator) =>
             {
                 var result = await mediator.Send(command);
                 return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(result.Error);

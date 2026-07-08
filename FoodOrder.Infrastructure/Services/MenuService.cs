@@ -2,10 +2,6 @@
 using FoodOrder.Application.Common.Interfaces;
 using FoodOrder.Domain.Enums;
 using FoodOrder.Domain.Models;
-using FoodOrder.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FoodOrder.Infrastructure.Services
 {
@@ -43,10 +39,11 @@ namespace FoodOrder.Infrastructure.Services
 
         }
 
-        public Task<Result<IEnumerable<MenuItem>>> GetAllMenuItemsAsync()
+        public async Task<Result<IEnumerable<MenuItem>>> GetAllMenuItemsAsync()
         {
-            return Result<IEnumerable<MenuItem>>.Success(_repository.GetAllAsync());
+            return Result<IEnumerable<MenuItem>>.Success(await _repository.GetAllAsync());
         }
+
 
         public async Task<Result<IEnumerable<MenuItem>>> GetMenuItemsByCategoryAsync(MenuCategory category)
         {

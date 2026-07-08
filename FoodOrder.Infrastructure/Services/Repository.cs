@@ -1,9 +1,6 @@
 ﻿using FoodOrder.Application.Common.Interfaces;
 using FoodOrder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FoodOrder.Infrastructure.Services
 {
