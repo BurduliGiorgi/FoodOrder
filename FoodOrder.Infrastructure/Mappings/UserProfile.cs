@@ -9,6 +9,7 @@ namespace FoodOrder.Infrastructure.Mappings
         public UserProfile()
         {
             CreateMap<AppUser, TokenRequest>();
+
         }
     }
 }

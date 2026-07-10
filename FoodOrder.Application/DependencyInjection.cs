@@ -15,11 +15,6 @@ namespace FoodOrder.Application
         {
             builder.Services.AddMediatR(typeof(RegisterCommand).Assembly);
             builder.Services.AddValidatorsFromAssemblyContaining<RegisterCommand>();
-            builder.Services.AddAutoMapper(cfg =>
-            {
-                cfg.AddMaps(typeof(RegisterCommand).Assembly);
-            });
-
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             return builder;
         }

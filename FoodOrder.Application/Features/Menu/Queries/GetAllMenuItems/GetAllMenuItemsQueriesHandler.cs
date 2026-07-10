@@ -20,9 +20,14 @@ namespace FoodOrder.Application.Features.Menu.Commands.GetAllMenuItems
 
         public async Task<Result<List<MenuItemDto>>> Handle(GetAllMenuItemsQueries request, CancellationToken cancellationToken)
         {
-            var items = await _repository.GetAllMenuItemsAsync();
-            var dtos = _mapper.Map<List<MenuItemDto>>(items);
+            var result = await _repository.GetAllMenuItemsAsync();
+
+            if (!result.IsSuccess)
+                return Result<List<MenuItemDto>>.Failure(result.Error);
+
+            var dtos = _mapper.Map<List<MenuItemDto>>(result.Value);
             return Result<List<MenuItemDto>>.Success(dtos);
         }
+
     }
 }

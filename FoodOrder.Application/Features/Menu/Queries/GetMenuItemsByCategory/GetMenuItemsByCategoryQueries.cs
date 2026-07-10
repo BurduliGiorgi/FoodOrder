@@ -1,8 +1,9 @@
 ﻿using FoodOrder.Application.Common;
 using FoodOrder.Application.DTOs;
+using FoodOrder.Domain.Enums;
 using MediatR;
 
 namespace FoodOrder.Application.Features.Menu.Queries.GetMenuItemsByCategory
 {
-	public class GetMenuItemsQuery(Guid? CategoryId = null) : IRequest<Result<List<MenuItemDto>>>;
+	public record GetMenuItemsByCategoryQueries(MenuCategory Category) : IRequest<Result<List<MenuItemDto>>>;
 }

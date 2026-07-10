@@ -1,4 +1,6 @@
 ﻿using FoodOrder.Application.Common.Interfaces;
+using FoodOrder.Application.Features.Auth.Commands.Register;
+using FoodOrder.Application.Mappings;
 using FoodOrder.Infrastructure.Configuration;
 using FoodOrder.Infrastructure.Data;
 using FoodOrder.Infrastructure.Identity;
@@ -33,7 +35,11 @@ namespace FoodOrder.Infrastructure
             builder.Services.AddJwtAuthentication(jwtSettings);
             builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
             builder.Services.AddAuthorization();
-            builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(UserProfile).Assembly));
+            builder.Services.AddAutoMapper(cfg =>
+            {
+                cfg.AddMaps(typeof(UserProfile).Assembly);       
+                cfg.AddMaps(typeof(MenuItemProfile).Assembly); 
+            });
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
