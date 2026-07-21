@@ -1,6 +1,4 @@
-﻿
-using FoodOrder.Application.Features.Menu.Commands.GetAllMenuItems;
-using FoodOrder.Application.Features.Menu.Queries.GetAllMenuItems;
+﻿using FoodOrder.Application.Features.Menu.Queries.GetAllMenuItems;
 using MediatR;
 
 namespace FoodOrder.API.Endpoints.Menu

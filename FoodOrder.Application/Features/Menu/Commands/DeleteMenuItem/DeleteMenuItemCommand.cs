@@ -1,4 +1,7 @@
-﻿namespace FoodOrder.Application.Features.Menu.Commands.DeleteMenuItem
+﻿using FoodOrder.Application.Common;
+using MediatR;
+
+namespace FoodOrder.Application.Features.Menu.Commands.DeleteMenuItem
 {
-    public record DeleteMenuItemCommand(Guid Id);
+    public record DeleteMenuItemCommand(Guid Id) : IRequest<Result<string>>;
 }

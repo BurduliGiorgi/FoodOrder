@@ -1,5 +1,4 @@
 ﻿using FoodOrder.Application.Common.Interfaces;
-using FoodOrder.Application.Features.Auth.Commands.Register;
 using FoodOrder.Application.Mappings;
 using FoodOrder.Infrastructure.Configuration;
 using FoodOrder.Infrastructure.Data;

@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
 using FoodOrder.Application.Common.Behaviours;
 using FoodOrder.Application.Features.Auth.Commands.Register;
-using FoodOrder.Application.Features.Menu.Commands.GetAllMenuItems;
-using FoodOrder.Application.Features.Menu.Queries.GetAllMenuItems;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

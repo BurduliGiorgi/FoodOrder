@@ -8,7 +8,7 @@ namespace FoodOrder.API.Endpoints.Menu
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapPost("/menu-items", async (
+            app.MapPost("/get-menu-items-by-category", async (
         [FromBody] GetMenuItemsByCategoryQueries command,
          [FromServices] IMediator mediator) =>
             {

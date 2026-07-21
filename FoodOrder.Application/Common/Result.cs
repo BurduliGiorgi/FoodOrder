@@ -1,6 +1,4 @@
-﻿using FoodOrder.Domain.Models;
-
-namespace FoodOrder.Application.Common
+﻿namespace FoodOrder.Application.Common
 {
     public class Result<T>
     {

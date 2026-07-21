@@ -53,12 +53,21 @@ namespace FoodOrder.Infrastructure.Services
 
         }
 
-        public async Task<Result<string>> UpdateMenuItemAsync(Guid id)
+     
+        public async Task<Result<string>> UpdateMenuItemAsync(Guid id, string name, decimal price, MenuCategory category)
         {
             var menuItem = await _repository.GetById(id);
-            _repository.Update(menuItem);
+            if (menuItem is null)
+                return Result<string>.Failure("Menu item not found.");
+
+            menuItem.Name = name;
+            menuItem.Price = price;
+            menuItem.Category = category;
+
             await _unitOfWork.SaveChangesAsync();
+
             return Result<string>.Success("Menu item updated successfully.");
         }
+
     }
 }

@@ -3,7 +3,6 @@ using FoodOrder.Application.Common;
 using FoodOrder.Application.Common.Interfaces;
 using FoodOrder.Application.DTOs;
 using MediatR;
-using Microsoft.IdentityModel.Tokens;
 
 namespace FoodOrder.Application.Features.Menu.Queries.GetMenuItemsByCategory
 {
